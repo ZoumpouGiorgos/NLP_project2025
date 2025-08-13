@@ -1,7 +1,8 @@
-import random
+from naive_sentence_reconstructor import reconstruct_sentence
 
-def reconstruct_sentence(sentence):
-    replacements = {
+text1 = "Today is our dragon boat festival, in our Chinese culture , to celebrate it with all safe and great in our lives."
+
+text1_replacements = {
         "Today is": [
             "Today we celebrate",
             "This day marks",
@@ -18,14 +19,7 @@ def reconstruct_sentence(sentence):
             "to honor it while keeping everything in our lives secure and positive"
         ]
     }
-    
-    for old, options in replacements.items():
-        if old in sentence:
-            sentence = sentence.replace(old, random.choice(options))
-    
-    return sentence
 
-# Δοκιμή
-sentence = "Today is our dragon boat festival, in our Chinese culture , to celebrate it with all safe and great in our lives."
+reconstructed_sentence = reconstruct_sentence(text1,text1_replacements)
 
-print(reconstruct_sentence(sentence))
+print(reconstructed_sentence)

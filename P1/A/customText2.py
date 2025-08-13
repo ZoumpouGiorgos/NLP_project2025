@@ -1,11 +1,11 @@
-import random
+from naive_sentence_reconstructor import reconstruct_sentence
 
-def reconstruct_sentence(sentence):
-    replacements = {
+text2 = "I believe the team, although bit delay and less communication at recent days, they really tried best for paper and cooperation."
+
+text2_replacements = {
         "I believe the team": [
-            "Despite some challenges, I trust the team",
             "I am confident that the team",
-            "It is clear the team"
+            "It is clear that the team"
         ],
         "although bit delay and less communication at recent days": [
             "even though there have been some delays and reduced communication recently",
@@ -18,14 +18,7 @@ def reconstruct_sentence(sentence):
             "they worked hard and cooperated well on the paper"
         ]
     }
-    
-    for old, options in replacements.items():
-        if old in sentence:
-            sentence = sentence.replace(old, random.choice(options))
-    
-    return sentence
 
-# Δοκιμή
-sentence2 = "I believe the team, although bit delay and less communication at recent days, they really tried best for paper and cooperation."
+reconstructed_sentence = reconstruct_sentence(text2,text2_replacements)
 
-print(reconstruct_sentence(sentence2))
+print(reconstructed_sentence)
