@@ -1,5 +1,4 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from dataa import text1
 
 # Load tokenizer and model
 tokenizer = AutoTokenizer.from_pretrained("Ateeqq/Text-Rewriter-Paraphraser")
@@ -27,6 +26,14 @@ def generate_paraphrases(text, num_return_sequences=3):
     return paraphrases
 
 if __name__ == "__main__":
+    text1 = """Today is our dragon boat festival, in our Chinese culture, to celebrate it with all safe and great in
+    our lives. Hope you too, to enjoy it as my deepest wishes.
+    Thank your message to show our words to the doctor, as his next contract checking, to all of us.
+    I got this message to see the approved message. In fact, I have received the message from the
+    professor, to show me, this, a couple of days ago. I am very appreciated the full support of the
+    professor, for our Springer proceedings publication"""
+    
     paraphrases = generate_paraphrases(text1)
     
+    # Print only the last paraphrase
     print(f"Paraphrase:\n{paraphrases[-1]}\n")
