@@ -9,13 +9,11 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import re
-
-# Download NLTK data (run once)
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
-# 1. PREPROCESSING
+#PREPROCESSING
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
 
@@ -24,7 +22,7 @@ def preprocess(text):
     tokens = [lemmatizer.lemmatize(t) for t in tokens if t not in stop_words]
     return tokens
 
-# 2. EMBEDDING METHODS
+#EMBEDDING METHODS
 def embed_bert(texts, model_name="bert-base-uncased"):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModel.from_pretrained(model_name)
@@ -69,14 +67,14 @@ def embed_avg_fasttext(texts, ft_model):
             vectors.append(np.zeros(ft_model.get_dimension()))
     return np.array(vectors)
 
-# 3. SIMILARITY METRICS
+#SIMILARITY METRICS
 def similarity_metrics(emb1, emb2):
     return {
         "cosine": 1 - cosine(emb1, emb2),
         "euclidean": euclidean(emb1, emb2)
     }
 
-# 4. VISUALIZATION WITH ARROWS
+#VISUALIZATION WITH ARROWS
 def visualize_with_arrows(embeddings, labels, method="PCA"):
     if method == "PCA":
         reducer = PCA(n_components=2)
@@ -86,7 +84,7 @@ def visualize_with_arrows(embeddings, labels, method="PCA"):
     reduced = reducer.fit_transform(embeddings)
 
     plt.figure(figsize=(10, 8))
-    # Original
+
     plt.scatter(reduced[0, 0], reduced[0, 1], color="red", label="Original", s=150)
 
     for i in range(1, len(reduced)):
@@ -100,12 +98,12 @@ def visualize_with_arrows(embeddings, labels, method="PCA"):
     plt.title(f"Embedding Shift Visualization ({method})")
     plt.show()
 
-# 5. MAIN ANALYSIS
+#MAIN ANALYSIS
 def show_comparison_analysis(sentences):
     labels, texts = zip(*sentences)
 
-    # BERT
-    print("\n=== BERT ANALYSIS ===")
+    #BERT
+    print("\nBERT ANALYSIS")
     emb_bert = embed_bert(texts)
     for i in range(1, len(emb_bert)):
         metrics = similarity_metrics(emb_bert[0], emb_bert[i])
@@ -113,8 +111,8 @@ def show_comparison_analysis(sentences):
     visualize_with_arrows(emb_bert, labels, method="PCA")
     visualize_with_arrows(emb_bert, labels, method="t-SNE")
 
-    # GloVe
-    print("\n=== GloVe ANALYSIS ===")
+    #GloVe
+    print("\nGloVe ANALYSIS")
     glove_model = load_glove_model("glove.6B.300d.txt")
     emb_glove = embed_avg_word2vec(texts, glove_model)
     for i in range(1, len(emb_glove)):
@@ -123,8 +121,8 @@ def show_comparison_analysis(sentences):
     visualize_with_arrows(emb_glove, labels, method="PCA")
     visualize_with_arrows(emb_glove, labels, method="t-SNE")
 
-    # FastText
-    print("\n=== FastText ANALYSIS ===")
+    #FastText
+    print("\nFastText ANALYSIS")
     import fasttext
     import fasttext.util
     fasttext.util.download_model('en', if_exists='ignore')
