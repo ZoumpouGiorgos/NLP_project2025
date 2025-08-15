@@ -9,4 +9,4 @@ sentences_txt1 = [
     ("Chat-GPT", "Today is the Dragon Boat Festival, a cherished tradition in Chinese culture, celebrated with wishes for safety and prosperity in our lives.") # Ground Truth - The best possible model to use
 ]
 
-print(f"\n{generate_similarity_matrix(sentences_txt1)}\n")
+print(f"Text1 Similarity Matrix:\n{generate_similarity_matrix(sentences_txt1)}\n")

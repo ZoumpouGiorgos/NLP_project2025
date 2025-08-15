@@ -7,4 +7,4 @@ I got this message to see the approved message. In fact, I have received the mes
 professor, to show me, this, a couple of days ago. I am very appreciated the full support of the
 professor, for our Springer proceedings publication"""
 
-print(f"Paraphrase:\n{ generate_paraphrase(text1) }\n")
+print(f"Text1 Paraphrased with Vennify:\n{ generate_paraphrase(text1) }\n")

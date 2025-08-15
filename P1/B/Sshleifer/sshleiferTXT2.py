@@ -11,4 +11,4 @@ he sending again. Because I didn’t see that part final yet, or maybe I missed,
 Overall, let us make sure all are safe and celebrate the outcome with strong coffee and future
 targets"""
 
-print(f"Summary:\n{ generate_summary(text2) }\n")
+print(f"Text2 Summarized with Sshleifer:\n{ generate_summary(text2) }\n")

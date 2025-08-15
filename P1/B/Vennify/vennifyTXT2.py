@@ -11,4 +11,4 @@ he sending again. Because I didn’t see that part final yet, or maybe I missed,
 Overall, let us make sure all are safe and celebrate the outcome with strong coffee and future
 targets"""
 
-print(f"Paraphrase:\n{ generate_paraphrase(text2) }\n")
+print(f"Text2 Paraphrased with Vennify:\n{ generate_paraphrase(text2) }\n")

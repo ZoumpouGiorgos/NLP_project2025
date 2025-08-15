@@ -9,4 +9,4 @@ sentences_txt2 = [
     ("Chat-GPT", "I believe that although the team has been a bit delayed and communicated less in recent days, they still did their best on the paper and in working together.") # Ground Truth - The best possible model to use
 ]
 
-print(f"\n{generate_similarity_matrix(sentences_txt2)}\n")
+print(f"Text2 Similarity Matrix:\n{generate_similarity_matrix(sentences_txt2)}\n")

@@ -20,6 +20,4 @@ text1_replacements = {
         ]
     }
 
-reconstructed_sentence = reconstruct_sentence(text1,text1_replacements)
-
-print(reconstructed_sentence)
+print(f"Text1 Reconstructed Sentence:\n{ reconstruct_sentence(text1,text1_replacements) }\n")
