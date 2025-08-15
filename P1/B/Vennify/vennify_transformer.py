@@ -11,3 +11,8 @@ def generate_paraphrase(text):
     outputs = model.generate(inputs, max_length=512, num_beams=5, early_stopping=True)
     corrected_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return corrected_text
+
+def generate_paraphrase_long(text):
+    sentences = text.split('\n')
+    corrected = [generate_paraphrase(s) for s in sentences if s.strip()]
+    return ' '.join(corrected)
