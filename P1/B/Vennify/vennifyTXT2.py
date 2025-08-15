@@ -1,4 +1,4 @@
-from vennify_transformer import generate_paraphrase_long
+from vennify_transformer import generate_paraphrase
 
 text2 = """During our final discuss, I told him about the new submission — the one we were waiting since
 last autumn, but the updates was confusing as it not included the full feedback from reviewer or
@@ -11,4 +11,4 @@ he sending again. Because I didn’t see that part final yet, or maybe I missed,
 Overall, let us make sure all are safe and celebrate the outcome with strong coffee and future
 targets"""
 
-print(f"Paraphrase:\n{ generate_paraphrase_long(text2) }\n")
+print(f"Paraphrase:\n{ generate_paraphrase(text2) }\n")
