@@ -1,14 +1,13 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 model_name = "sshleifer/distilbart-cnn-12-6"
-
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
 def generate_summary(text):
     inputs = tokenizer(text, max_length=1024, truncation=True, return_tensors="pt")
 
-    summary_ids = model.generate(
+    outputs = model.generate(
         inputs["input_ids"],
         num_beams=4,
         max_length=120,
@@ -19,4 +18,4 @@ def generate_summary(text):
         decoder_start_token_id=model.config.decoder_start_token_id
     )
 
-    return tokenizer.decode(summary_ids[0], skip_special_tokens=True)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
