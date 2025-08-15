@@ -15,22 +15,16 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
-# =============================
 # 1. PREPROCESSING
-# =============================
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
 
 def preprocess(text):
-    # Lowercase, tokenize by words (simple regex tokenizer)
     tokens = re.findall(r'\b[a-zA-Z]+\b', text.lower())
-    # Remove stopwords and lemmatize
     tokens = [lemmatizer.lemmatize(t) for t in tokens if t not in stop_words]
     return tokens
 
-# =============================
-# 2. EMBEDDING METHODS (UPDATED)
-# =============================
+# 2. EMBEDDING METHODS
 def embed_bert(texts, model_name="bert-base-uncased"):
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModel.from_pretrained(model_name)
@@ -58,7 +52,7 @@ def load_glove_model(glove_file):
             word = parts[0]
             vector = np.array(parts[1:], dtype='float32')
             glove_model[word] = vector
-    # Create KeyedVectors and add vectors
+            
     vector_size = len(next(iter(glove_model.values())))
     kv = KeyedVectors(vector_size=vector_size)
     kv.add_vectors(list(glove_model.keys()), list(glove_model.values()))
@@ -75,18 +69,14 @@ def embed_avg_fasttext(texts, ft_model):
             vectors.append(np.zeros(ft_model.get_dimension()))
     return np.array(vectors)
 
-# =============================
 # 3. SIMILARITY METRICS
-# =============================
 def similarity_metrics(emb1, emb2):
     return {
         "cosine": 1 - cosine(emb1, emb2),
         "euclidean": euclidean(emb1, emb2)
     }
 
-# =============================
 # 4. VISUALIZATION WITH ARROWS
-# =============================
 def visualize_with_arrows(embeddings, labels, method="PCA"):
     if method == "PCA":
         reducer = PCA(n_components=2)
@@ -110,14 +100,11 @@ def visualize_with_arrows(embeddings, labels, method="PCA"):
     plt.title(f"Embedding Shift Visualization ({method})")
     plt.show()
 
-# =============================
 # 5. MAIN ANALYSIS
-# =============================
 def show_comparison_analysis(sentences):
     labels, texts = zip(*sentences)
 
-    # ====== BERT ======
-
+    # BERT
     print("\n=== BERT ANALYSIS ===")
     emb_bert = embed_bert(texts)
     for i in range(1, len(emb_bert)):
@@ -126,8 +113,7 @@ def show_comparison_analysis(sentences):
     visualize_with_arrows(emb_bert, labels, method="PCA")
     visualize_with_arrows(emb_bert, labels, method="t-SNE")
 
-    # ====== GloVe ======
-
+    # GloVe
     print("\n=== GloVe ANALYSIS ===")
     glove_model = load_glove_model("glove.6B.300d.txt")
     emb_glove = embed_avg_word2vec(texts, glove_model)
@@ -137,8 +123,7 @@ def show_comparison_analysis(sentences):
     visualize_with_arrows(emb_glove, labels, method="PCA")
     visualize_with_arrows(emb_glove, labels, method="t-SNE")
 
-    # ====== FastText ======
-
+    # FastText
     print("\n=== FastText ANALYSIS ===")
     import fasttext
     import fasttext.util
