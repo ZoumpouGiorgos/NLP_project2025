@@ -1,11 +1,11 @@
 from sentence_transformers import SentenceTransformer, util
 import pandas as pd
 
-def generate_similarity_matrix(sentences):
-    model = SentenceTransformer('all-MiniLM-L6-v2')
-    
-    labels, texts = zip(*sentences)
+model_name = 'all-MiniLM-L6-v2'
+model = SentenceTransformer(model_name)
 
+def generate_similarity_matrix(sentences):
+    labels, texts = zip(*sentences)
     embeddings = model.encode(texts, convert_to_tensor=True)
 
     similarity_matrix = util.pytorch_cos_sim(embeddings, embeddings)
