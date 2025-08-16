@@ -10,26 +10,25 @@ This project implements and compares various paraphrasing and text analysis meth
 
 - **P1/**
   - **A/**: Custom παραφράσεις με απλούς αλγορίθμους αντικατάστασης λέξεων ([customText1.py](P1/A/customText1.py), [customText2.py](P1/A/customText2.py))
-    - Custom paraphrasing with simple word replacement algorithms
+    / Custom paraphrasing with simple word replacement algorithms
   - **B/**: Παραφράσεις/συνοψίσεις με έτοιμα μοντέλα transformers
-    - Paraphrasing/summarization with pretrained transformer models
+    / Paraphrasing/summarization with pretrained transformer models
     - **Ateeqq/**: [Ateeqq/Text-Rewriter-Paraphraser](P1/B/Ateeqq/ateeqq_transformer.py)
     - **Sshleifer/**: [sshleifer/distilbart-cnn-12-6](P1/B/Sshleifer/sshleifer_transformer.py)
     - **Vennify/**: [vennify/t5-base-grammar-correction](P1/B/Vennify/vennify_transformer.py)
   - **C/**: Υπολογισμός similarity matrices μεταξύ των παραγόμενων κειμένων ([similarity_matrix_generator.py](P1/C/similarity_matrix_generator.py), [comp1.py](P1/C/comp1.py), [comp2.py](P1/C/comp2.py))
-    - Calculation of similarity matrices between generated texts
+    / Calculation of similarity matrices between generated texts
 
 - **P2/**
   - Προχωρημένη ανάλυση ομοιότητας και οπτικοποίηση embeddings με χρήση BERT, GloVe, FastText ([comp_analyzer.py](P2/comp_analyzer.py), [compAnalysis1.py](P2/compAnalysis1.py), [compAnalysis2.py](P2/compAnalysis2.py))
-    - Advanced similarity analysis and embedding visualization using BERT, GloVe, FastText
+    / Advanced similarity analysis and embedding visualization using BERT, GloVe, FastText
 
 ## Τεχνολογίες & Εξαρτήσεις / Technologies & Dependencies
 
 - Python 3.10+
 - PyTorch, Transformers, SentenceTransformers
 - Gensim, FastText, NLTK, scikit-learn, pandas, matplotlib
-- Τα requirements ορίζονται στο [pyproject.toml](pyproject.toml)
-- Requirements are defined in [pyproject.toml](pyproject.toml)
+- Τα requirements ορίζονται στο [pyproject.toml](pyproject.toml) / Requirements are defined in [pyproject.toml](pyproject.toml)
 
 ## Οδηγίες Εκτέλεσης / Usage
 
@@ -69,13 +68,13 @@ This project implements and compares various paraphrasing and text analysis meth
 ## Περιγραφή Λειτουργικότητας / Functionality
 
 - **Custom Paraphrasing**: Απλή αντικατάσταση φράσεων με τυχαίες επιλογές ([P1/A](P1/A/)).
-  - Simple phrase replacement with random choices
+  / Simple phrase replacement with random choices
 - **Paraphrasing/Summarization με Transformers**: Χρήση έτοιμων μοντέλων για παραγωγή παραφράσεων ή συνοψίσεων ([P1/B](P1/B/)).
-  - Using pretrained models for paraphrasing or summarization
+  / Using pretrained models for paraphrasing or summarization
 - **Similarity Matrices**: Υπολογισμός ομοιότητας μεταξύ όλων των εκδοχών με Sentence Transformers ([P1/C](P1/C/)).
-  - Similarity calculation between all versions using Sentence Transformers
+  / Similarity calculation between all versions using Sentence Transformers
 - **Προχωρημένη Ανάλυση**: Υπολογισμός embeddings με BERT, GloVe, FastText, μετρικές ομοιότητας και οπτικοποίηση σε 2D χώρο ([P2](P2/)).
-  - Embedding calculation with BERT, GloVe, FastText, similarity metrics and 2D visualization
+  / Embedding calculation with BERT, GloVe, FastText, similarity metrics and 2D visualization
 
 ## Αρχεία Δεδομένων / Data Files
 
