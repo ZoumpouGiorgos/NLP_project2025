@@ -75,27 +75,35 @@ def similarity_metrics(emb1, emb2):
     }
 
 #VISUALIZATION WITH ARROWS
-def visualize_with_arrows(embeddings, labels, method="PCA"):
+def visualize_with_arrows(embeddings, labels, method):
+    if method not in ["PCA", "t-SNE"]:
+        print("Method must be 'PCA' or 't-SNE'")
+        return
+
     if method == "PCA":
         reducer = PCA(n_components=2)
-    else:
+    elif method == "t-SNE":
         perplexity = min(len(embeddings) - 1, 5)
         reducer = TSNE(n_components=2, perplexity=perplexity, random_state=42)
+
     reduced = reducer.fit_transform(embeddings)
+    reduced = (reduced - reduced.mean(0)) / (reduced.std(0) + 1e-8)
 
-    plt.figure(figsize=(10, 8))
+    fig, ax = plt.subplots(figsize=(10, 8))
+    ax.set_aspect('equal', adjustable='box')
 
-    plt.scatter(reduced[0, 0], reduced[0, 1], color="red", label="Original", s=150)
-
+    ax.scatter(reduced[0, 0], reduced[0, 1], label="Original", s=150)
     for i in range(1, len(reduced)):
-        plt.scatter(reduced[i, 0], reduced[i, 1], label=labels[i])
-        plt.arrow(reduced[0, 0], reduced[0, 1],
-                  reduced[i, 0] - reduced[0, 0],
-                  reduced[i, 1] - reduced[0, 1],
-                  color='gray', alpha=0.5, head_width=0.05, length_includes_head=True)
+        ax.scatter(reduced[i, 0], reduced[i, 1], label=labels[i])
+        ax.arrow(
+            reduced[0, 0], reduced[0, 1],
+            reduced[i, 0] - reduced[0, 0],
+            reduced[i, 1] - reduced[0, 1],
+            alpha=0.5, head_width=0.05, length_includes_head=True
+        )
 
-    plt.legend()
-    plt.title(f"Embedding Shift Visualization ({method})")
+    ax.legend()
+    ax.set_title(f"Embedding Shift Visualization ({method})")
     plt.show()
 
 #MAIN ANALYSIS
