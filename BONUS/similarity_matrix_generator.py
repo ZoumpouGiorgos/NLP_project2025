@@ -37,7 +37,7 @@ for i in range(3):
     print(f"Similarity matrix:")
     print(f"\n{generate_similarity_matrix(word_masks)}\n")
 
-    print("--------------------------------------------------\n")
+    print("------------------------------------------------------\n")
 
 for i in range(7):
     word_masks = [(sentences_a1114[k][0],sentences_a1114[k][1][i]) for k in range(len(sentences_a1114))]
@@ -49,4 +49,4 @@ for i in range(7):
     print(f"Similarity matrix:")
     print(f"\n{generate_similarity_matrix(word_masks)}\n")
 
-    print("--------------------------------------------------\n")
+    print("------------------------------------------------------\n")
